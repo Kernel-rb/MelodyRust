@@ -3,7 +3,10 @@ import Footer from './Component/footer/Footer';
 import './App.css';
 
 
+
+
 function App() {
+
   return (
     <div className="container">
       <div className="main-content">
@@ -16,9 +19,12 @@ function App() {
         <button>I'm Ready</button>
         <button>Don't click Me</button>
       </div>
+
+
       <Footer author="Kernel-rb" />
     </div>
   );
 }
+
 
 export default App;

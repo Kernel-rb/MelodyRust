@@ -17,7 +17,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 95vh;
+  min-height: 90vh;
   justify-content: space-between;
   text-align: center;
   margin: 0;
@@ -25,23 +25,102 @@
 }
 
 .main-content {
-  padding-top: 25vh;
+  padding-top: 20vh;
   flex-grow: 1;
 }
 
 h1 {
+  font-size: 50px;
   text-align: center;
+  color:  #1BFD9C;
+}
+h1::selection { 
+  color: white;
 }
 
-h1::selection, p::selection {
-  background-color: rgb(124, 124, 124);
-  color: #ffffff;
+@keyframes colorChange {
+  0%, 100% {
+    color: #1BFD9C; 
+  }
+  50% {
+    color: #ffffff; 
+  }
+}
+h1 span {
+  display: inline-block;
+  animation: colorChange 3s infinite;
 }
 
+h1 span:nth-child(1) { animation-delay: 0s; }
+h1 span:nth-child(2) { animation-delay: 0.2s; }
+h1 span:nth-child(3) { animation-delay: 0.4s; }
+h1 span:nth-child(4) { animation-delay: 0.6s; }
+h1 span:nth-child(5) { animation-delay: 0.8s; }
+h1 span:nth-child(6) { animation-delay: 1s; }
+h1 span:nth-child(7) { animation-delay: 1.2s; }
+h1 span:nth-child(8) { animation-delay: 1.4s; }
+h1 span:nth-child(9) { animation-delay: 1.6s; }
+h1 span:nth-child(10) { animation-delay: 1.8s; }
+h1 span:nth-child(11) { animation-delay: 2s; }
+h1 span:nth-child(12) { animation-delay: 2.2s; }
+h1 span:nth-child(13) { animation-delay: 2.4s; }
+h1 span:nth-child(14) { animation-delay: 2.6s; }
+h1 span:nth-child(15) { animation-delay: 2.8s; }
+h1 span:nth-child(16) { animation-delay: 3s; }
+h1 span:nth-child(17) { animation-delay: 3.2s; }
+h1 span:nth-child(18) { animation-delay: 3.4s; }
+h1 span:nth-child(19) { animation-delay: 3.6s; }
+h1 span:nth-child(20) { animation-delay: 3.8s; }
+h1 span:nth-child(21) { animation-delay: 4s; }
 p {
   text-align: center;
+  color: white;
+  font-size: 15px;
+}
+ p::selection {
+  color: #1BFD9C;
+}
+button {
+  --green: #1BFD9C;
+  font-size: 15px;
+  margin: 15px ;
+  padding: 0.7em 2.7em;
+  letter-spacing: 0.06em;
+  position: relative;
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  line-height: 1.4em;
+  border: 2px solid var(--green);
+  background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
 }
 
+button:hover {
+  color: #82ffc9;
+  box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform .4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+}
+
+button:hover:before {
+  transform: translateX(15em);
+}
+
+button::selection {
+  color: white;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     color: #f6f6f6;

@@ -2,16 +2,14 @@ import React from 'react';
 
 import './Footer.css';
 
-interface FooterProps {
-  author: string;
-}
 
-const Footer: React.FC<FooterProps> = ({ author }) => {
+
+const Footer = () => {
   
   return (
     <footer style={{color : "#1BFD9C"}}>
-      Made with ❤️ by {author}. Feel free to contribute to the <a 
-      href="https://github.com/Kernel-rb" 
+      Made with ❤️ by Kernel-rb. Feel free to contribute to the <a 
+      href="https://github.com/Kernel-rb/MelodyRust" 
       target="_blank"
       style={{ color: "white" }}
       > 

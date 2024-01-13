@@ -21,13 +21,36 @@
   text-align: center;
   margin: 0;
   padding: 0;
+  padding-bottom: 10px;
 }
 
 .main-content {
-  padding-top: 20vh;
+  padding-top: 20vh; 
   flex-grow: 1;
+  margin-bottom: 10px;
 }
 
+.app-logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 100px;
+  height: auto;
+  margin-top: -100px; 
+  margin-bottom: 2px; 
+  animation: pulse 2s infinite; 
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 h1 {
   font-size: 50px;
   text-align: center;
@@ -83,6 +106,8 @@ button {
   --green: #1BFD9C;
   font-size: 15px;
   margin: 15px ;
+  margin-top: 20px;
+  margin-bottom: 20px; ;
   padding: 0.7em 2.7em;
   letter-spacing: 0.06em;
   position: relative;
@@ -119,6 +144,22 @@ button:hover:before {
 
 button::selection {
   color: white;
+}
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px; 
+}
+.icon {
+  color: #1BFD9C;
+  font-size: 24px; 
+  margin: 0 15px; 
+  transition: color 0.3s ease; 
+
+}
+
+.icon:hover {
+  color: #82ffc9; 
 }
 @media (prefers-color-scheme: dark) {
   :root {

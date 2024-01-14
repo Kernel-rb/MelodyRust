@@ -4,30 +4,40 @@ import { isPermissionGranted, requestPermission, sendNotification } from '@tauri
 import './AppVersion.css';
 
 function AppVersion() {
-    const [version, setVersion] = useState('');
+    const [version, setVersion] = useState(null);
+    const [latestVersion, setLatestVersion] = useState(null); 
 
     useEffect(() => {
         invoke('get_app_version')
             .then((response) => setVersion(response as string))
             .catch((error) => console.error('Error fetching app version:', error));
     }, []);
+
     useEffect(() => {
         invoke('fetch_latest_version')
-            .then((latest) => {
-                if (version !== latest) {
-                    if (!isPermissionGranted()) {
-                        requestPermission();
-                    }
-                    sendNotification({
-                        title: ' Melody Rust : Update Available ',
-                        body: 'A new version of the app is available. Please update to the latest version.',
-                    });
-                }
-            })
+            .then((latest) => setLatestVersion(latest))
             .catch((error) => console.error('Error checking for updates:', error));
-    }, [version]);   
+    }, []);
 
-    return <div className='version'> You are currently using : <span>{version} V</span></div>
+    useEffect(() => {
+        if (version && latestVersion) { // Vérifiez que les deux versions sont disponibles
+            if (version !== latestVersion) {
+                if (!isPermissionGranted()) {
+                    requestPermission();
+                }
+                sendNotification({
+                    title: 'Melody Rust : Update Available 🚨',
+                    body: 'A new version of the app is available. Please update to the latest version.',
+                });
+            } else {
+                sendNotification({
+                    title: 'Melody Rust : Up to date 🤝',
+                    body: 'You are using the latest version of the app.',
+                });
+            }
+        }
+    }, [version, latestVersion]);
+    return <div className='version'>You are currently using: <span>{version ? `${version} V` : 'Loading...'}</span></div>
 }
 
 export default AppVersion;

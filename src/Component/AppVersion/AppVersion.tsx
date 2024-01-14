@@ -4,8 +4,8 @@ import { isPermissionGranted, requestPermission, sendNotification } from '@tauri
 import './AppVersion.css';
 
 function AppVersion() {
-    const [version, setVersion] = useState(null);
-    const [latestVersion, setLatestVersion] = useState(null); 
+    const [version, setVersion] = useState<string | null>(null);
+    const [latestVersion, setLatestVersion] = useState<string | null>(null);
 
     useEffect(() => {
         invoke('get_app_version')
@@ -15,12 +15,12 @@ function AppVersion() {
 
     useEffect(() => {
         invoke('fetch_latest_version')
-            .then((latest) => setLatestVersion(latest))
+            .then((latest) => setLatestVersion(latest as string))
             .catch((error) => console.error('Error checking for updates:', error));
     }, []);
 
     useEffect(() => {
-        if (version && latestVersion) { 
+        if (version && latestVersion) {
             if (version !== latestVersion) {
                 if (!isPermissionGranted()) {
                     requestPermission();
@@ -37,7 +37,12 @@ function AppVersion() {
             }
         }
     }, [version, latestVersion]);
-    return <div className='version'>You are currently using: <span>{version ? `${version} V` : 'Loading...'}</span></div>
+
+    return (
+        <div className='version'>
+            You are currently using: <span>{version ? `${version} V` : 'Loading...'}</span>
+        </div>
+    );
 }
 
 export default AppVersion;

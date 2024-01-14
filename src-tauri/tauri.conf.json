@@ -17,6 +17,14 @@
         "hide": true,
         "show": true
       },
+      "notification": {
+        "all": true
+      },
+      "http": {
+        "all": true,
+        "request": true,
+        "scope": []
+      },
       "shell": {
         "all": false,
         "open": true

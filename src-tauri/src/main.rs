@@ -1,6 +1,9 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
+use reqwest;
+use regex::Regex;
+
 
 
 #[tauri::command]
@@ -8,9 +11,24 @@ fn get_app_version() -> String {
     env!("CARGO_PKG_VERSION").to_string()
 }
 
-fn main() {
+#[tauri::command]
+async fn fetch_latest_version() -> Result<String, String> {
+    let url = "https://raw.githubusercontent.com/Kernel-rb/MelodyRust/main/src-tauri/Cargo.toml";
+    let response = reqwest::get(url).await.map_err(|e| e.to_string())?.text().await.map_err(|e| e.to_string())?;
+    let version_regex = Regex::new(r#"(?m)^version\s*=\s*"([0-9.]+)""#).unwrap();
+    if let Some(caps) = version_regex.captures(&response) {
+        Ok(caps[1].to_string())
+    } else {
+        Err("Version not found in Cargo.toml".into())
+    }
+}
+
+
+
+#[tokio::main]
+async fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![get_app_version])
+        .invoke_handler(tauri::generate_handler![fetch_latest_version , get_app_version ])
         .system_tray(SystemTray::new().with_menu(
             SystemTrayMenu::new()
                 .add_item(CustomMenuItem::new("show", "Show"))

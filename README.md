@@ -1,7 +1,7 @@
 # MelodyRust
 
 <div align="center">
-    ![Alt Text](public/icon.png)
+    <img src="public/icon.png" alt="MelodyRust Icon">
 </div>
 
-MelodyRust is a Music player with new features . It is built using Tauri ( Rust and React ) .
+MelodyRust is a music player with new features. It is built using Tauri (Rust and React).

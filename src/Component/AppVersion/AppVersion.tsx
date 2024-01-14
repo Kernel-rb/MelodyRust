@@ -20,7 +20,7 @@ function AppVersion() {
     }, []);
 
     useEffect(() => {
-        if (version && latestVersion) { // Vérifiez que les deux versions sont disponibles
+        if (version && latestVersion) { 
             if (version !== latestVersion) {
                 if (!isPermissionGranted()) {
                     requestPermission();

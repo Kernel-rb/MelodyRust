@@ -2,11 +2,10 @@
 
 use tauri::{CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu};
 
-const APP_VERSION: &str = "0.0.1";
 
 #[tauri::command]
 fn get_app_version() -> String {
-    APP_VERSION.to_string()
+    env!("CARGO_PKG_VERSION").to_string()
 }
 
 fn main() {

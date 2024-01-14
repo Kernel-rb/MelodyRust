@@ -13,6 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+
 .container {
   display: flex;
   flex-direction: column;
@@ -161,6 +163,22 @@ button::selection {
 .icon:hover {
   color: #82ffc9; 
 }
+
+
+
+@keyframes circle-in-center {
+  from {
+    clip-path: circle(0%);
+  }
+  to {
+    clip-path: circle(125%);
+  }
+}
+
+[transition-style="in:circle:center"] {
+  animation: 2.5s cubic-bezier(.25, 1, .30, 1) circle-in-center both;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     color: #f6f6f6;
